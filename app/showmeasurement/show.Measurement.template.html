@@ -1,0 +1,257 @@
+<h1>Add Measurement Form</h1>
+<div id="snackbar"></div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-sm-6 offset-lg-3 offset-md-3 offset-sm-3 common-form">
+      <div class="form-group">
+        
+                <label for="normal-field" class="col-form-label">Enter Contact Name</label>
+        
+                <input type="text" [(ngModel)]="newMeasurement.CustomerContactName" id="normal-field" class="form-control custom-inputs"
+                  placeholder="Please Enter Customer Contact Name">
+        
+              </div>
+              <div class="form-group">
+                <button (click)="searchByName()" class="btn btn-primary">Search</button>
+              </div>
+      <div class="form-group">
+
+        <label for="normal-field" class="col-form-label">Enter Contact Number</label>
+
+        <input type="text" [(ngModel)]="newMeasurement.CustomerContactNumber" id="normal-field" class="form-control custom-inputs"
+          placeholder="Please Enter Customer Contact Number">
+
+      </div>
+
+      <div class="form-group">
+        <button (click)="search()" class="btn btn-primary">Search</button>
+      </div>
+
+
+      <div class="form-group">
+        <select (change)="getcutomerId($event.target.value)">
+          <option disabled selected>Select Customers</option>
+          <option *ngFor='let customer of customers' value={{customer._id}}>
+            {{customer.FullName}}
+          </option>
+        </select>
+
+        <select class="measurementsType" (change)="getForms($event.target.value)">
+          <option disabled selected>Select Option</option>
+          <option value="Shalwar Kameez">Shalwar Kameez</option>
+          <option value="Coat">Coat</option>
+          <option value="Sherwani">Sherwani</option>
+          <option value="Waist Coat">Waist Coat</option>
+          <option value="Pant">Pant</option>
+          <option value="Trouser">Trouser</option>
+
+        </select>
+      </div>
+
+  <!--     <div class="row" id="selectType">
+        <h1 class="record-text">Record Measurements for:</h1>
+       
+      </div> -->
+    </div>
+  </div>
+
+  <div class="row row-2">
+
+    </div>
+   
+    <div class="table-responsive" *ngIf="WaistCoat">          
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Length</th>
+            <th>Chest</th>
+            <th>Waist</th>
+            <th>Hip</th>
+            <th>Shoulder</th>
+            <th>Neck</th>
+            <th>HB</th>
+            <th>CB</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of MultipleMeasurement;let i=index">
+            <td>{{i}}</td>
+            <td>{{order.CoatLength}}</td>
+            <td>{{order.CoatChest}}</td>
+            <td>{{order.CoatWaist}}</td>
+            <td>{{order.CoatHip}}</td>
+            <td>{{order.CoatShoulder}}</td>
+            <td>{{order.CoatNeck}}</td>
+            <td>{{order.CoatHB}}</td>
+            <td>{{order.CoatCB}}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      </div>
+ 
+
+    <div class="table-responsive" *ngIf="ShalwarKameez">          
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Bottom</th>
+          <th>SLength</th>
+          <th>Bysep</th>
+          <th>Neck</th>
+          <th>Shoulder</th>
+          <th>Sleeve</th>
+          <th>Hip</th>
+          <th>Waist</th>
+          <th>Chest</th>
+          <th>Length</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of MultipleMeasurement;let i=index">
+          <td>{{i}}</td>
+          <td>{{order.ShalwarKameezBottom}}</td>
+          <td>{{order.ShalwarKameezSLength}}</td>
+          <td>{{order.ShalwarKameezBysep}}</td>
+          <td>{{order.ShalwarKameezNeck}}</td>
+          <td>{{order.ShalwarKameezShoulder}}</td>
+          <td>{{order.ShalwarKameezSleeve}}</td>
+          <td>{{order.ShalwarKameezHip}}</td>
+          <td>{{order.ShalwarKameezWaist}}</td>
+          <td>{{order.ShalwarKameezChest}}</td>
+          <td>{{order.ShalwarKameezLength}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="table-responsive" *ngIf="Pant">          
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Bottom</th>
+            <th>Hip</th>
+            <th>Inside</th>
+            <th>Knee</th>
+            <th>Length</th>
+            <th>Waist</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of MultipleMeasurement;let i=index">
+            <td>{{i}}</td>
+            <td>{{order.PentBottom}}</td>
+            <td>{{order.PentHip}}</td>
+            <td>{{order.PentInside}}</td>
+            <td>{{order.PentKnee}}</td>
+            <td>{{order.PentLength}}</td>
+            <td>{{order.PentWaist}}</td>
+           
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="table-responsive" *ngIf="Coat">          
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Bottom</th>
+              <th>SLength</th>
+              <th>Bysep</th>
+              <th>Neck</th>
+              <th>Shoulder</th>
+              <th>Sleeve</th>
+              <th>Hip</th>
+              <th>Waist</th>
+              <th>Chest</th>
+              <th>Length</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of MultipleMeasurement;let i=index">
+              <td>{{i}}</td>
+              <td>{{order.CoatBysep}}</td>
+              <td>{{order.CoatCB}}</td>
+              <td>{{order.CoatChest}}</td>
+              <td>{{order.CoatHB}}</td>
+              <td>{{order.CoatHip}}</td>
+              <td>{{order.CoatLength}}</td>
+              <td>{{order.CoatNeck}}</td>
+              <td>{{order.CoatShoulder}}</td>
+              <td>{{order.CoatSleeve}}</td>
+              <td>{{order.CoatWaist}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div class="table-responsive" *ngIf="Sherwani">          
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Sep</th>
+                <th>CB</th>
+                <th>Chest</th>
+                <th>HB</th>
+                <th>Hip</th>
+                <th>Length</th>
+                <th>Shoulder</th>
+                <th>Sleeve</th>
+                <th>Waist</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of MultipleMeasurement;let i=index">
+                <td>{{i}}</td>
+                <td>{{order.SherwaniBysep}}</td>
+                <td>{{order.SherwaniCB}}</td>
+                <td>{{order.SherwaniChest}}</td>
+                <td>{{order.SherwaniHB}}</td>
+                <td>{{order.SherwaniHip}}</td>
+                <td>{{order.SherwaniLength}}</td>
+                <td>{{order.SherwaniShoulder}}</td>
+                <td>{{order.SherwaniSleeve}}</td>
+                <td>{{order.SherwaniWaist}}</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+
+          
+        <div class="table-responsive" *ngIf="Trouser">          
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Bottom</th>
+                <th>Hip</th>
+                <th>Inside</th>
+                <th>Knee</th>
+                <th>Length</th>
+                <th>Waist</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of MultipleMeasurement;let i=index">
+                <td>{{i}}</td>
+                <td>{{order.TrouserBottom}}</td>
+                <td>{{order.TrouserHip}}</td>
+                <td>{{order.TrouserInside}}</td>
+                <td>{{order.TrouserKnee}}</td>
+                <td>{{order.TrouserLength}}</td>
+                <td>{{order.TrouserWaist}}</td>
+                
+              </tr>
+            </tbody>
+          </table>
+          </div>
+
+</div>

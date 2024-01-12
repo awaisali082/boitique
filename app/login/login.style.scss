@@ -1,0 +1,123 @@
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../scss/variables";
+
+/***********************************/
+/**             LOGIN             **/
+/***********************************/
+
+.login-page{
+  background-color: $gray-semi-lighter;
+}
+
+.login-page .page-footer {
+  margin-bottom: 25px;
+  font-size: $font-size-mini;
+  color: $text-muted;
+  text-align: center;
+  @media (min-height: 600px) {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.widget-login-container{
+  padding-top: 10%;
+}
+
+.widget-login-logo{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: $font-weight-normal;
+  .fa-circle{
+    font-size: 13px;
+    margin: 0 20px;
+  }
+}
+
+.widget-login{
+  padding: 30px;
+
+  > header{
+    h1,h2,h3,h4,h5,h6{
+      font-weight: $font-weight-normal;
+      text-align: center;
+    }
+  }
+}
+
+.widget-login-info{
+  font-size: $font-size-mini;
+  color: #888;
+  margin-top: 1px;
+  margin-bottom: 0;
+  text-align: center;
+
+  &.abc-checkbox {
+    margin-left: -25px;
+  }
+}
+
+.login-form{
+  .form-control{
+    font-size: $font-size-mini;
+    border: none;
+    background-color: $gray-lighter;
+    &:focus{
+      background-color: $gray-semi-lighter;
+    }
+  }
+}
+
+
+.my-btn{
+  color:white;
+}
+
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+
+/* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}

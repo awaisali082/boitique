@@ -1,0 +1,131 @@
+<div class="row">
+
+  <div id="snackbar"></div>
+
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+  <select class="selectType" (change)="getOrdersByStatus($event.target.value)">
+     <option disabled selected>Select Status</option>
+     <option value="100">Pending</option>
+     <option value="200">Cutting</option>
+     <option value="300">Stiching</option>
+     <option value="400">Ready at warehouse</option>
+     <option value="500">Reached Outlet</option>
+  </select>
+  <div class="table-responsive">          
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>Contact Number</th>
+            <th>Try Date</th>
+            <th>Delivery Date</th>
+            <th *ngIf="this.IsAdmin">Order Total</th>
+            <th>Change Status</th>
+            <th>View</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of ordersList;let i=index">
+            <td>{{i}}</td>
+            <td>{{order.CustomerId.FullName}}</td>
+            <td>{{order.CustomerId.ContactNumber}}</td>
+            <td>{{order.TryDate}}
+            <td>{{order.DeliveryDate}}</td>
+            <td *ngIf="this.IsAdmin">{{order.OrderTotal}}</td>
+            
+            <td><select class="selectType" (change)="setOrderStatus($event.target.value,order)">
+              <option disabled selected>Select Status</option>
+              <option value="100">Pending</option>
+              <option value="200">Cutting</option>
+              <option value="300">Stiching</option>
+              <option value="400">Ready at warehouse</option>
+              <option value="500">Reached Outlet</option>
+            </select></td>
+            <td><button class="btn btn-primary view" (click)="viewThisOrder(order)">View</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+
+</div>
+
+<div class="col-md-8 col-lg-8 col-sm-8 offset-lg-2 offset-md-2 offset-sm-2 col-xs-12">
+
+
+  <div *ngIf="orderFetched" class="order-detail">
+
+
+  <h1 class="detail-heading">Order Detail</h1>
+
+
+  <p class="heading">Name : <span class="value">{{OneOrder.CustomerId.FullName}}</span></p>
+
+  <p class="heading">Contact Number : <span class="value">{{OneOrder.CustomerId.ContactNumber}}</span></p>
+
+  <p class="heading">Email : <span class="value">{{OneOrder.CustomerId.Email}}</span></p>
+
+  <p class="heading">Delivery Date : <span class="value">{{OneOrder.DeliveryDate}}</span></p>
+
+  <p class="heading">Try Date : <span class="value">{{OneOrder.TryDate}}</span></p>
+
+  <p class="heading" *ngIf="this.IsAdmin">Order Total : <span class="value">{{OneOrder.OrderTotal}}</span></p>
+
+  <p class="heading" *ngIf="this.IsAdmin">Advance Received : <span class="value">{{OneOrder.AdvanceReceived}}</span></p>
+
+  <p class="heading">Special Instructions: <span class="value">{{OneOrder.SpecialInstructions}}</span></p>
+
+
+
+  <div class="table-responsive">          
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th *ngIf="this.IsAdmin">Price</th>
+            <th>Special Instructions</th>
+            <th>Stitcher</th>
+            <th>Master</th>
+            <th>Action</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orderitem of OneOrder.OrderItemId;let i=index">
+            <td>{{i}}</td>
+            <td>{{orderitem.ProductName}}</td>
+            <td>{{orderitem.Quantity}}</td>
+            <td *ngIf="this.IsAdmin">{{orderitem.Price}}</td>
+            <td>{{orderitem.SpecialInstructions}}</td>
+            <td>
+              <select class="selectType" (change)="getSelectedStitcher($event.target.value)">
+                <option disabled selected>Select User</option>
+                <option *ngFor="let user of allEmployees" value="{{user._id}}">{{user.FullName}}</option>
+              </select>
+            </td>
+
+            <td>
+              <select class="selectType" (change)="getSelectedMaster($event.target.value)">
+                <option disabled selected>Select User</option>
+                <option *ngFor="let user of allEmployees" value="{{user._id}}">{{user.FullName}}</option>
+              </select>
+            </td>
+            <td>
+              <button class="btn btn-info" (click)='assignItems(orderitem)'>Assign</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+
+</div>
+
+
+</div>
+
+  
+</div>
